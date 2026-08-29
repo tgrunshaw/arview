@@ -7,6 +7,7 @@
   --ink:#151B17; --ink-2:#5A6560; --line:#CDD3CC;
   --accent:#C6491A; --accent-ink:#fff; --accent-soft:rgba(198,73,26,.11);
   --sage:#6E8378; --sage-soft:rgba(110,131,120,.14); --grid:rgba(21,27,23,.07);
+  --me:#2563A8; --me-soft:rgba(37,99,168,.15);
   --shadow:0 1px 2px rgba(21,27,23,.06),0 8px 24px -12px rgba(21,27,23,.18);
 }
 @media (prefers-color-scheme: dark){
@@ -15,6 +16,7 @@
     --ink:#E6EAE5; --ink-2:#8F9C95; --line:#2A352D;
     --accent:#F2703A; --accent-ink:#1A0E07; --accent-soft:rgba(242,112,58,.15);
     --sage:#8FA396; --sage-soft:rgba(143,163,150,.14); --grid:rgba(230,234,229,.06);
+    --me:#6FA8E8; --me-soft:rgba(111,168,232,.18);
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
   }
 }
@@ -23,6 +25,7 @@
   --ink:#E6EAE5; --ink-2:#8F9C95; --line:#2A352D;
   --accent:#F2703A; --accent-ink:#1A0E07; --accent-soft:rgba(242,112,58,.15);
   --sage:#8FA396; --sage-soft:rgba(143,163,150,.14); --grid:rgba(230,234,229,.06);
+  --me:#6FA8E8; --me-soft:rgba(111,168,232,.18);
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
@@ -88,6 +91,23 @@ ol.steps li:first-child{border-top:0; padding-top:2px}
 .step-b{margin:0}
 .step-b b{font-weight:500}
 .mono{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+.locate{background:var(--surface); border:1px solid var(--line); border-radius:4px; overflow:hidden}
+.findbtn{
+  display:block; width:100%; appearance:none; border:0; cursor:pointer;
+  background:var(--me); color:#fff; font-family:Archivo,sans-serif; font-weight:600;
+  font-size:15px; letter-spacing:.02em; padding:15px 18px; text-align:center;
+}
+.findbtn[hidden]{display:none}
+.findbtn:active{filter:brightness(.92)}
+.findbtn:focus-visible{outline:2px solid var(--ink); outline-offset:-4px}
+#navout{display:grid; grid-template-columns:auto 1fr; gap:2px 16px; align-items:baseline; padding:14px 16px}
+#navout[hidden]{display:none}
+#navdist{font-family:Archivo,sans-serif; font-weight:700; font-size:38px; line-height:1; letter-spacing:-.02em; color:var(--me); grid-row:span 2}
+#navbrg{font-family:"IBM Plex Mono",monospace; font-size:14px; color:var(--ink); font-variant-numeric:tabular-nums}
+#navacc{font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--ink-2)}
+#navmsg{grid-column:1 / -1; margin:8px 0 0; font-size:13px; color:var(--ink-2)}
+.maplink{display:block; padding:11px 16px; border-top:1px solid var(--line); background:var(--surface-2);
+  font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--me); text-decoration:none; letter-spacing:.04em}
 .hl{color:var(--accent); font-weight:500}
 .plan{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:10px}
 .plan svg{display:block; width:100%; height:auto}
@@ -160,9 +180,20 @@ footer{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-2)
 
   <section>
     <h2><span class="n">01</span>Set out</h2>
-    <p>The mark is the <b>centre of the footprint rectangle</b> &mdash; the small orange ring and cross. Two ways to find it; use whichever mark you can see.</p>
+    <p>The mark is the <b>centre of the footprint rectangle</b> &mdash; the small orange ring and cross. Let the phone walk you to it, or pace it from a boundary mark.</p>
+    <div class="locate">
+      <button id="findme" class="findbtn">Walk me to the mark</button>
+      <div id="navout" hidden>
+        <span id="navdist">&mdash;</span>
+        <span id="navbrg">&mdash;</span>
+        <span id="navacc">&mdash;</span>
+        <p id="navmsg"></p>
+      </div>
+      <a class="maplink" id="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=-43.5805690,172.6279181" target="_blank" rel="noopener">or open the mark in Maps &rarr;</a>
+    </div>
+    <p>Your blue dot and its accuracy ring show on the plan below, to scale. If the ring is bigger than the house, trust the tape, not the phone.</p>
     <ol class="steps">
-      <li><span class="step-n">1</span><p class="step-b">From <b>where the access spur meets the lot</b>, walk <span class="mono hl">22.3 m</span> on <span class="mono hl">192&deg;</span>. Or from the <b>east boundary corner</b>, <span class="mono hl">25.5 m</span> on <span class="mono hl">258&deg;</span>. Both <b>true</b> bearings &mdash; set your compass app to true north rather than magnetic.</p></li>
+      <li><span class="step-n">1</span><p class="step-b">Tape it instead if you prefer: from <b>where the access spur meets the lot</b>, <span class="mono hl">22.3 m</span> on <span class="mono hl">192&deg;</span>; or from the <b>east boundary corner</b>, <span class="mono hl">25.5 m</span> on <span class="mono hl">258&deg;</span>. Set a compass app to true north, not magnetic.</p></li>
       <li><span class="step-n">2</span><p class="step-b">Tap <b>&ldquo;Stand it up at full size&rdquo;</b>, sweep the phone at the ground a couple of metres ahead until it locks onto a surface, then tap to drop the house.</p></li>
       <li><span class="step-n">3</span><p class="step-b">Twist with two fingers until the <span class="hl">orange arrow points true north</span>. Everything else follows from that one move.</p></li>
       <li><span class="step-n">4</span><p class="step-b">Orange on the ground, from heaviest to lightest: the <b>three floor plates</b> with a tick at each corner &mdash; those ticks are the pegs &mdash; then the <b>decks</b>, then the <b>garage slab</b>. The ticked green line is the zone boundary &mdash; flat on the ground plane here, draped over the landform on the second tab.</p></li>
@@ -192,6 +223,9 @@ footer{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-2)
 .t{font-family:"IBM Plex Mono",monospace;font-size:1.8px;fill:var(--ink-2);letter-spacing:.06em}
 .t.k{fill:var(--ink)}.t.s{font-size:1.55px}
 .nlbl{font-family:Archivo,sans-serif;font-weight:600;font-size:2.6px;fill:var(--ink)}
+.meacc{fill:var(--me-soft);stroke:var(--me);stroke-width:.16;opacity:.9}
+.medot{fill:var(--me);stroke:var(--surface);stroke-width:.25}
+.meline{stroke:var(--me);stroke-width:.22;stroke-dasharray:.9 .7;fill:none;opacity:.85}
 </style></defs>
 <path class="g" d="M-30 -24 L-30 38"/><path class="g" d="M-20 -24 L-20 38"/><path class="g" d="M-10 -24 L-10 38"/><path class="g" d="M0 -24 L0 38"/><path class="g" d="M10 -24 L10 38"/><path class="g" d="M-34 30 L18 30"/><path class="g" d="M-34 20 L18 20"/><path class="g" d="M-34 10 L18 10"/><path class="g" d="M-34 0 L18 0"/><path class="g" d="M-34 -10 L18 -10"/><path class="g" d="M-34 -20 L18 -20"/>
 <path class="b" d="M77.60 -149.40 L77.50 -148.40 L69.50 -144.60 L41.30 -129.20 L39.10 -128.00 L37.00 -126.70 L34.90 -125.30 L32.90 -123.90 L31.00 -122.40 L29.10 -120.80 L27.30 -119.20 L25.60 -117.50 L23.90 -115.70 L22.20 -113.90 L20.70 -112.10 L19.20 -110.20 L17.90 -108.20 L16.60 -106.20 L15.40 -104.10 L14.20 -102.00 L13.20 -99.80 L12.20 -97.50 L11.30 -95.20 L10.60 -92.80 L9.90 -90.50 L9.30 -88.00 L8.90 -85.60 L7.30 -75.30 L7.10 -73.80 L2.80 -44.40 L2.40 -42.20 L2.00 -40.10 L1.50 -38.00 L0.90 -35.80 L0.20 -33.70 L-0.60 -31.70 L-1.50 -29.70 L-2.40 -27.70 L-3.40 -25.70 L-4.50 -23.80 L-5.70 -21.90 L-6.90 -20.10 L-8.20 -18.30 L-7.00 -17.10 L12.20 -2.00 L-2.90 24.50 L-59.00 62.00 L-84.60 79.20 L-183.20 145.20 L-186.20 96.10 L-196.50 61.80 L-212.80 43.90 L-188.90 56.20 L-164.60 38.20 L-73.00 41.00 L-53.00 -23.80 L-52.40 -25.70 L-17.20 -14.50 L-11.50 -21.50 L-8.90 -19.00 L-7.60 -20.70 L-6.40 -22.50 L-5.30 -24.30 L-4.20 -26.20 L-3.20 -28.10 L-2.30 -30.10 L-1.40 -32.10 L-0.70 -34.10 L0.00 -36.20 L0.60 -38.20 L1.10 -40.30 L1.60 -42.40 L1.90 -44.60 L6.20 -74.10 L6.50 -75.60 L8.00 -85.70 L8.40 -87.90 L8.80 -90.00 L9.40 -92.10 L10.00 -94.10 L10.70 -96.20 L11.50 -98.20 L12.40 -100.20 L13.40 -102.40 L14.60 -104.50 L15.80 -106.70 L17.10 -108.70 L18.50 -110.70 L20.00 -112.60 L21.60 -114.50 L23.20 -116.30 L24.90 -118.10 L26.70 -119.80 L28.60 -121.50 L30.50 -123.10 L32.40 -124.60 L34.40 -126.00 L36.50 -127.40 L38.60 -128.70 L40.70 -130.00 L69.00 -145.40 Z"/>
@@ -212,7 +246,7 @@ footer{font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-2)
 <text class="t s" x="-17.6" y="26.0" text-anchor="middle">lawn</text>
 <text class="t s" x="-33.0" y="1.0">← outlook</text>
 <path d="M13.5 -19.5 L11.9 -14.8 L13.5 -16.0 L15.1 -14.8 Z" fill="var(--ink)"/><text class="nlbl" x="13.5" y="-11.1" text-anchor="middle">N</text>
-<path class="b" style="stroke-width:.24" d="M-33 35.0 L-23 35.0 M-33 34.2 L-33 35.8 M-23 34.2 L-23 35.8"/><text class="t s" x="-22.0" y="35.7">10 m</text>
+<path class="b" style="stroke-width:.24" d="M-33 35.0 L-23 35.0 M-33 34.2 L-33 35.8 M-23 34.2 L-23 35.8"/><text class="t s" x="-22.0" y="35.7">10 m</text><circle id="me_acc" class="meacc" cx="0" cy="0" r="0" visibility="hidden"/><path id="me_line" class="meline" d="" visibility="hidden"/><circle id="me_dot" class="medot" cx="0" cy="0" r="0.95" visibility="hidden"/>
 </svg>
     </div>
     <div class="legend">
@@ -1479,6 +1513,44 @@ enterar.addEventListener('click', async () => {
 tabH.addEventListener('click', () => show('house'));
 tabS.addEventListener('click', () => show('site'));
 show('house');
+
+// ---- walk-to-the-mark ----
+(() => {
+  const LAT0=-43.580537783, LON0=172.628075510;
+  const INV=[80736.871028679,-496.980533514,360.695764225,111059.728645348]; // [dlon,dlat] -> [x,y]
+  const SPX=-12.694, SPY=-3.525, CONV=0.255;   // blender +Y is true 0.255 deg
+  const btn=document.getElementById('findme'), out=document.getElementById('navout');
+  const eD=document.getElementById('navdist'), eB=document.getElementById('navbrg'),
+        eA=document.getElementById('navacc'), eM=document.getElementById('navmsg');
+  const dot=document.getElementById('me_dot'), acc=document.getElementById('me_acc'), lin=document.getElementById('me_line');
+  if (!navigator.geolocation) { btn.textContent='This browser has no location'; btn.disabled=true; return; }
+  btn.addEventListener('click', () => {
+    btn.hidden = true; out.hidden = false; eM.textContent='Waiting for a fix…';
+    navigator.geolocation.watchPosition(pos => {
+      const dlon=pos.coords.longitude-LON0, dlat=pos.coords.latitude-LAT0;
+      const x=INV[0]*dlon+INV[1]*dlat, y=INV[2]*dlon+INV[3]*dlat;
+      const dx=SPX-x, dy=SPY-y, dist=Math.hypot(dx,dy);
+      const brg=((Math.atan2(dx,dy)*180/Math.PI)+CONV+360)%360;
+      const a=pos.coords.accuracy||0;
+      eD.textContent = dist<1000 ? dist.toFixed(dist<10?1:0)+' m' : '—';
+      eB.textContent = 'walk '+brg.toFixed(0)+'° true';
+      eA.textContent = 'GPS ±'+a.toFixed(0)+' m';
+      eM.textContent = dist<2.5 ? 'You are on the mark. Face north and place the model.'
+                     : a>15 ? 'GPS is vague here — get within sight, then tape it from a boundary mark.'
+                     : dist<8 ? 'Close. Walk slowly; the last few metres are inside the GPS error.'
+                     : '';
+      if (dot){
+        dot.setAttribute('cx',x.toFixed(2)); dot.setAttribute('cy',(-y).toFixed(2)); dot.removeAttribute('visibility');
+        acc.setAttribute('cx',x.toFixed(2)); acc.setAttribute('cy',(-y).toFixed(2));
+        acc.setAttribute('r',Math.max(a,0.5).toFixed(1)); acc.removeAttribute('visibility');
+        lin.setAttribute('d','M'+x.toFixed(2)+' '+(-y).toFixed(2)+' L'+SPX+' '+(-SPY)); lin.removeAttribute('visibility');
+      }
+    }, err => {
+      eM.textContent = 'Location unavailable: '+err.message+'. Allow location for this site in Chrome, or tape it from a boundary mark.';
+      eD.textContent='—';
+    }, {enableHighAccuracy:true, maximumAge:2000, timeout:25000});
+  });
+})();
 
 (async () => {
   const framed = window.self !== window.top;
