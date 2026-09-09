@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#173e35"><title>Scheme J · On site</title>
+<link rel="stylesheet" href="style.css"><link rel="icon" href="data:,">
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script></head>
+<body><main id="page">
+<header><a href="../">← Other schemes</a><span>7 HALCYON · SCHEME J</span></header>
+<h1>Walk around Scheme J.</h1><p class="intro">Full size on your site. Place two points, check the alignment, then explore.</p>
+<div id="viewer" aria-label="Interactive 3D preview of Scheme J"><div id="loading" role="status">Loading the house…</div><span class="badge">1:1 IN AR · METRES</span></div>
+<div class="toolbar"><label><input id="siteToggle" type="checkbox"> Show proposed groundworks</label><button id="resetView" class="quiet">Reset 3D view</button></div>
+<button id="startAR" class="primary" disabled>Checking AR support…</button><p id="status" class="note" role="status">Open in Chrome on your Galaxy S21.</p>
+<div class="secondary"><button id="saveOffline">Save for onsite use</button><a id="nativeAR" href="#" hidden>Open simple Android AR ↗</a></div><p id="offlineStatus" class="note" role="status">Download the viewer and both models before travelling.</p>
+<details open><summary>How to position it onsite</summary>
+<ol><li><strong>Establish A and B.</strong> They mark the north and south ends of the proposed garage door, projected onto the existing ground. They are <strong>5.00 m apart horizontally</strong>. Use the plan below; these are proposed positions, not existing survey marks.</li><li><strong>Start AR and scan the ground.</strong> Move the phone slowly over textured ground near A. Aim the ring at A and tap <strong>Set A</strong>. Walk to B and repeat.</li><li><strong>Check the fit.</strong> The viewer uses A for position and B for heading. It keeps the house at 1:1 and reports distance and ground-height differences. If the points disagree, recheck their positions.</li><li><strong>Adjust and explore.</strong> Use the height, turn and move controls if needed. Turn groundworks on to see the proposed cuts and lawn. Recheck A/B after walking far or losing tracking.</li></ol>
+<img src="alignment-plan.svg" alt="Top-down Scheme J plan showing the two garage-door calibration points A and B, five metres apart, and north." class="plan">
+<p class="note">The initial height follows the original model terrain at A. If the actual ground differs, adjust height. Without established positions, use AR as an approximate size and outlook study.</p></details>
+<details><summary>Phone setup and limits</summary><p>Use an up-to-date Chrome, Google app and Google Play Services for AR. Allow camera access. Open this page directly over HTTPS; a file attachment or embedded browser may not launch AR.</p><p>After saving, reopen this exact page in airplane mode before you leave. Browser storage can be cleared; keep the tab available. The simple Android viewer needs an internet connection and uses automatic placement, without this page’s A/B calibration.</p><p>Concept visualisation. Position can drift; phone AR is not survey setout. Existing ground, trees and buildings do not automatically hide the virtual house. Materials are simplified for a phone; geometry comes from the saved Scheme J model dated 9 September 2026.</p></details>
+<footer><a href="scheme-j-house.glb" download>House GLB</a><a href="scheme-j-siteworks.glb" download>Groundworks GLB</a><a href="model-info.json">Model reference</a></footer>
+</main>
+<div id="overlay" hidden>
+<div class="xr-top"><span id="xrState">Find point A</span><button id="exitAR">Exit AR</button></div>
+<div class="xr-bottom"><p id="xrInstruction" role="status">Move the phone slowly to find the ground.</p><button id="capture" class="primary" disabled>Set A</button>
+<div id="adjustments" hidden><div class="xr-actions"><button id="reposition">Set A/B again</button><label><input id="xrSite" type="checkbox"> Groundworks</label></div>
+<details><summary>Adjust placement</summary><p id="offsetReadout">Height +0.00 m · turn +0°</p>
+<div class="adjust-row"><span>Height</span><button data-adjust="height,-0.1">−10 cm</button><button data-adjust="height,0.1">+10 cm</button></div>
+<div class="adjust-row"><span>Turn</span><button data-adjust="yaw,-1">−1°</button><button data-adjust="yaw,1">+1°</button></div>
+<div class="adjust-row"><span>Move 20 cm</span><button data-adjust="x,-0.2">←</button><button data-adjust="x,0.2">→</button><button data-adjust="z,-0.2">Away</button><button data-adjust="z,0.2">Closer</button></div>
+<button id="resetAdjust">Clear adjustments</button><p class="note">Move directions follow your current view. Scaling is always locked at 100%.</p></details></div>
+</div></div>
+<script type="module" src="viewer.js"></script>
+</body></html>

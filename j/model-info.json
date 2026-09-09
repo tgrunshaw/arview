@@ -1,0 +1,42 @@
+{
+  "source": "model/24_design_J.blend",
+  "source_sha256": "c0ad01935bfe15de0617665f99d67b454a21a82bd023c445a279ae7dc41f74f4",
+  "base_sha256": "8d1733dbafaaefa41c81f26c20ac0137a21293ccc03d82a3c91424357e7878d8",
+  "units": "metres",
+  "blender_origin": [
+    -15.353331565856934,
+    7.174632549285889,
+    -6.433837890625
+  ],
+  "axis_mapping": "glTF X = Blender X - origin X; Y = Blender Z - origin Z; Z = -(Blender Y - origin Y)",
+  "reference": {
+    "A_blender": [
+      -15.353331565856934,
+      7.174632549285889,
+      -6.433837890625
+    ],
+    "B_blender": [
+      -18.136253356933594,
+      3.0206761360168457,
+      -6.6626739501953125
+    ],
+    "A": [
+      0,
+      0,
+      0
+    ],
+    "B": [
+      -2.78292179107666,
+      -0.2288360595703125,
+      4.153956413269043
+    ],
+    "distance_horizontal": 5.000000757858777,
+    "description": "A: north garage door jamb projected onto original model terrain. B: south garage door jamb projected onto original model terrain. These are proposed points to establish onsite, not existing survey marks.",
+    "original_terrain_object": "terrain_original"
+  },
+  "levels": {
+    "garage_floor_above_A": -0.16616201400756836,
+    "living_floor_above_A": 2.583837890625,
+    "bedroom_floor_above_A": 4.083837890625
+  }
+}
